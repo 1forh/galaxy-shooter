@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         CalculateMovement();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         bool isPlayer = other.tag == "Player";
         bool isLaser = other.tag == "Laser";
