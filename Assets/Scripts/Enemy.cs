@@ -26,10 +26,15 @@ public class Enemy : MonoBehaviour
         bool isLaser = other.tag == "Laser";
 
 
-        
         if (isPlayer)
         {
-            // damage the player
+            Player player = other.transform.GetComponent<Player>();
+
+            if (player != null)
+            {
+                other.transform.GetComponent<Player>().Damage();
+            }
+
             Destroy(gameObject);
         }
 
