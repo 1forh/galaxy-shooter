@@ -84,10 +84,13 @@ public class Player : MonoBehaviour
         {
             _isTripleShotActive = true;
         }
+
+        StartCoroutine(DeactivatePowerup());
     }
 
-    public void DeactivatePowerup()
-    {
+    IEnumerator DeactivatePowerup()
+    { 
+        yield return new WaitForSeconds(5.0f);
         _isTripleShotActive = false;
     }
 

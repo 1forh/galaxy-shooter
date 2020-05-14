@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
             if (player != null)
             {
-                other.transform.GetComponent<Player>().Damage();
+                player.Damage();
             }
 
             Destroy(gameObject);

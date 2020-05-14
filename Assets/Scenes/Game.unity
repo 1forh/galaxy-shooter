@@ -490,7 +490,7 @@ MonoBehaviour:
     type: 3}
   _laserPrefab: {fileID: 5665664236958186022, guid: 2d9cf6b4a0fcd4bc5b45933be04fbe53,
     type: 3}
-  _fireRate: 0.25
+  _fireRate: 0
   _lives: 3
   _isTripleShotActive: 0
 --- !u!212 &1971587119
@@ -593,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 3652480385912199171, guid: a57bf3bf7093d4d088ff26589b1163fb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.77
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3652480385912199171, guid: a57bf3bf7093d4d088ff26589b1163fb,
         type: 3}
