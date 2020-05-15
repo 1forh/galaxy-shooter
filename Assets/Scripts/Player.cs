@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
     private float _speedModifier = 2.0f;
     [SerializeField]
     private bool _isShieldsActive = false;
-
+    [SerializeField]
+    private GameObject _playerShield;
 
     // Start is called before the first frame update
     void Start()
@@ -94,9 +95,11 @@ public class Player : MonoBehaviour
             case 1:
                 _isSpeedActive = true;
                 _speed *= _speedModifier;
+                
                 break;
             case 2:
                 _isShieldsActive = true;
+                _playerShield.SetActive(true);
                 break;
         }
 
@@ -110,16 +113,24 @@ public class Player : MonoBehaviour
         if (_isSpeedActive == true)
         {
             _speed /= _speedModifier;
+            _isSpeedActive = false;
         }
 
         _isTripleShotActive = false;
-        _isSpeedActive = false;
+       
         _isShieldsActive = false;
-        
+        _playerShield.SetActive(false);
     }
 
     public void Damage()
     {
+        if (_isShieldsActive == true)
+        {
+            // deactivate shields
+            this._isShieldsActive = false;
+            return;
+        }
+
         _lives--;
 
         if (_lives < 1)
