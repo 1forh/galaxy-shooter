@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 10f;
+    private float _speed = 5f;
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
@@ -18,6 +18,12 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     [SerializeField]
     private bool _isTripleShotActive = false;
+    [SerializeField]
+    private bool _isSpeedActive = false;
+    [SerializeField]
+    private float _speedModifier = 2.0f;
+    [SerializeField]
+    private bool _isShieldsActive = false;
 
 
     // Start is called before the first frame update
@@ -78,11 +84,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ActivatePowerup(string key)
+    public void ActivatePowerup(int powerupId)
     {
-        if (key == "TripleShot")
+        switch(powerupId)
         {
-            _isTripleShotActive = true;
+            case 0:
+                _isTripleShotActive = true;
+                break;
+            case 1:
+                _isSpeedActive = true;
+                _speed *= _speedModifier;
+                break;
+            case 2:
+                _isShieldsActive = true;
+                break;
         }
 
         StartCoroutine(DeactivatePowerup());
@@ -92,6 +107,9 @@ public class Player : MonoBehaviour
     { 
         yield return new WaitForSeconds(5.0f);
         _isTripleShotActive = false;
+        _isSpeedActive = false;
+        _isShieldsActive = false;
+        _speed /= _speedModifier;
     }
 
     public void Damage()
