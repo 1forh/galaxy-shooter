@@ -7,6 +7,12 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private float _speed = 2.0f;
+    private Player _player;
+
+    private void Start()
+    {
+       _player = GameObject.Find("Player").GetComponent<Player>();
+    }
 
 
     // Update is called once per frame
@@ -19,15 +25,12 @@ public class Enemy : MonoBehaviour
     {
         bool isPlayer = other.tag == "Player";
         bool isLaser = other.tag == "Laser";
-
-
+       
         if (isPlayer)
         {
-            Player player = other.transform.GetComponent<Player>();
-
-            if (player != null)
+            if (_player != null)
             {
-                player.Damage();
+                _player.Damage();
             }
 
             Destroy(gameObject);
@@ -36,9 +39,14 @@ public class Enemy : MonoBehaviour
 
         if (isLaser)
         {
-           Destroy(gameObject);
-           Destroy(other.gameObject);
 
+            if (_player != null)
+            {
+                _player.AddToScore(Random.Range(7, 11));
+            }
+
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
 
     }
