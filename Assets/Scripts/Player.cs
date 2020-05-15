@@ -106,10 +106,16 @@ public class Player : MonoBehaviour
     IEnumerator DeactivatePowerup()
     { 
         yield return new WaitForSeconds(5.0f);
+
+        if (_isSpeedActive == true)
+        {
+            _speed /= _speedModifier;
+        }
+
         _isTripleShotActive = false;
         _isSpeedActive = false;
         _isShieldsActive = false;
-        _speed /= _speedModifier;
+        
     }
 
     public void Damage()
